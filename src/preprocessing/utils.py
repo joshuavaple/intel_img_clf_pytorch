@@ -1,6 +1,8 @@
 import csv
 import os
 import pandas as pd
+from torchvision import transforms
+import PIL
 
 
 def build_annotation_csv(image_location, annot_location, output_csv_name):
@@ -26,6 +28,7 @@ def build_annotation_csv(image_location, annot_location, output_csv_name):
                 writer.writerow([file_name, file_path, class_name, class_lst.index(class_name)]) #write the file path and class name to the csv file
     return pd.read_csv(os.path.join(annot_location, output_csv_name))
 
+
 def check_annot_dataframe(annot_df):
     class_zip = zip(annot_df['class_index'], annot_df['class_name'])
     my_list = list()
@@ -34,4 +37,10 @@ def check_annot_dataframe(annot_df):
     unique_list = list(set(my_list))
     return unique_list
 
-
+def transform_bilinear(output_img_width, output_img_height):
+    image_transform = transforms.Compose([
+    transforms.ToTensor(),
+    transforms.Normalize(mean=[0.5, 0.5, 0.5], std=[0.5, 0.5, 0.5]),
+    transforms.Resize((output_img_width, output_img_height), interpolation=PIL.Image.BILINEAR)
+    ])
+    return image_transform
