@@ -1,0 +1,10 @@
+opencv-python==4.7.0.68
+matplotlib==3.5.3
+numpy>=1.17
+ipykernel==6.19.4
+torch==1.12.1
+torchsummary==1.5.1
+torchvision==0.13.1
+pandas==1.5.2
+pathlib==1.0.1
+Pillow==9.4.0
