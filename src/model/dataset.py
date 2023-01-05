@@ -25,11 +25,14 @@ class IntelDataset(torch.utils.data.Dataset): # inheritin from Dataset class
             image = self.transform(image)
         return image, class_name, class_index
 
-    def visualize(self, number_of_img, output_width, output_height):
+    def visualize(self, number_of_img = 10, output_width = 12, output_height = 6):
         plt.figure(figsize=(output_width,output_height))
         for i in range(number_of_img):
             idx = random.randint(0, len(self.annot_df))
             image, class_name, class_index = self.__getitem__(idx)
             ax=plt.subplot(2, 5, i+1) # create an axis
             ax.title.set_text(class_name + '-' + str(class_index)) # create a name of the axis based on the img name
-            plt.imshow(image) # show the img
+            if self.transform == None:
+                plt.imshow(image) 
+            else:
+                plt.imshow(image.permute(1, 2, 0))
