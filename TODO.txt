@@ -1,0 +1,2 @@
+1. Refactor the build_annotation_csv and check_annot_dataframe functions into methods of the Dataset class
+2. Find ways to make the subset dataset inherit the visualize method of the IntelDataset class
