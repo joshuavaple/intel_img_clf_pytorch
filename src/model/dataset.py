@@ -44,7 +44,7 @@ def create_validation_dataset(dataset, validation_proportion):
         dataset_size = int((1 - validation_proportion) * len(dataset))
         validation_size = len(dataset) - dataset_size
         print(dataset_size, validation_size)
-        dataset, validation_set = torch.utils.data.random_split(dataset,[dataset_size, validation_size])
+        dataset, validation_set = torch.utils.data.random_split(dataset, [dataset_size, validation_size])
         return dataset, validation_set
 
 
