@@ -2,7 +2,7 @@ import torch
 import numpy as np
 import pandas as pd
 import datetime
-import os 
+import os
 from config.loc_config import MODEL_SAVE_LOC, REPORT_SAVE_LOC
 
 
