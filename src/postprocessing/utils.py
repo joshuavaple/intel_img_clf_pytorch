@@ -79,14 +79,14 @@ def get_current_timestamp():
     return now.strftime("%Y%m%d_%H%M%S")
 
 
-def save_model_with_timestamp(model, filepath=MODEL_SAVE_LOC):
+def save_model_with_timestamp(model, filepath = MODEL_SAVE_LOC):
     filename = get_current_timestamp() + '_cnn_model' + '.pt'
     filepath = os.path.join(filepath, filename)
     torch.save(model.state_dict(), filepath)
     return print('Saved model to: ', filepath)
 
 
-def save_csv_with_timestamp(train_result_dict, filepath=MODEL_SAVE_LOC):
+def save_csv_with_timestamp(train_result_dict, filepath = MODEL_SAVE_LOC):
     filename = get_current_timestamp() + '_training_report' + '.csv'
     filepath = os.path.join(filepath, filename)
     df = pd.DataFrame(train_result_dict)

@@ -5,8 +5,8 @@ from torchvision import transforms
 import PIL
 
 
-def build_annotation_csv(image_location, annot_location, output_csv_name):
-    """Builds a csv file for pytorch training from a directory of folders of images.
+def build_annotation_dataframe(image_location, annot_location, output_csv_name):
+    """Builds dataframe and csv file for pytorch training from a directory of folders of images.
     Install csv module if not already installed.
     Args: 
     image_location: image directory path, e.g. r'.\data\train'

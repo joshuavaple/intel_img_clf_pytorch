@@ -1,7 +1,6 @@
 import torch
 import pandas as pd
 import cv2
-import os
 from matplotlib import pyplot as plt
 import random
 
