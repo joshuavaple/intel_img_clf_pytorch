@@ -74,6 +74,33 @@ def calculate_model_performance(y_true, y_pred, class_names):
     return confusion_matrix, class_metrics, overall_metrics
 
 
+def generate_fn_cost_matrix(confusion_matrix):
+    # set all elements of cost_matrix to zeros:
+    dimension = len(confusion_matrix)
+    cost_matrix = torch.zeros(dimension, dimension)
+    for j in range(dimension):
+        for i in range(dimension):
+            cost_matrix[i, j] = confusion_matrix[i, j] / \
+                (torch.sum(confusion_matrix[:, j]) - confusion_matrix[j, j])
+    # set diagonal back to 0
+    for i in range(dimension):
+        cost_matrix[i:i+1, i:i+1] = 0
+    return cost_matrix
+
+
+def generate_fp_cost_matrix(confusion_matrix):
+    # set all elements of cost_matrix to zeros:
+    dimension = len(confusion_matrix)
+    cost_matrix = torch.zeros(dimension, dimension)
+    for i in range(dimension):
+        for j in range(dimension):
+            cost_matrix[i, j] = confusion_matrix[i, j] / \
+                (torch.sum(confusion_matrix[i, :]) - confusion_matrix[i, i])
+    # set diagonal back to 0
+    for i in range(dimension):
+        cost_matrix[i:i+1, i:i+1] = 0
+    return cost_matrix
+
 def get_current_timestamp():
     now = datetime.datetime.now()
     return now.strftime("%Y%m%d_%H%M%S")
