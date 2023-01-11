@@ -1,7 +1,7 @@
 import torch.nn as nn
 
 
-class EnsembleModel(nn.Module):
+class MyEnsembleModel(nn.Module):
     def __init__(self, model_1, model_2):
         super().__init__()
         self.model_1 = model_1
@@ -11,8 +11,9 @@ class EnsembleModel(nn.Module):
         self.model_2.fc = nn.Identity()
 
         # Add a new linear layer:
-        # we are adding up the output logits in the forward pass, hence keeping 2048, which is the number of in_attributes to both resnet and inception
-        self.fc = nn.Linear(2048, 5) 
+        # we are adding up the output logits in the forward pass, 
+        # hence keeping 2048, which is the number of in_features to both resnet and inception
+        self.fc = nn.Linear(2048, 6) # output of 6 dimensional logits
 
     def forward(self, x):
         x1 = self.model_1(x.clone())
