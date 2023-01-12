@@ -22,6 +22,6 @@ class MyEnsembleModel(nn.Module):
         x2 = self.model_2(x)[0]
         # adding the outputs of the 2 models 
         x = x1 + x2
-        # return x with output of the new linear layer (5 classes)
+        # return x with output of the new linear layer (6 classes)
         x = self.fc(x)
         return x
